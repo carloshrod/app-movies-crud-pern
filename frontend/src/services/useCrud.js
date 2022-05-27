@@ -50,7 +50,7 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
 
     const deleteMovie = (id, nombre) => {
         Swal.fire({
-            html: `¿Estás seguro que quieres eliminar la película <b>${nombre}</b>?`,
+            html: `¿Estás seguro que quieres eliminar la película <b>${nombre}</b> con ID <b>${id}</b>?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#0b295e',

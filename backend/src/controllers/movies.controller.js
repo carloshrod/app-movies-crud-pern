@@ -5,9 +5,9 @@ const { uploadImage, deleteImage } = require('../utils/cloudinary');
 const getAllMovies = async (req, res) => {
     try {
         const allMovies = await pool.query('SELECT * FROM movies');
-        res.json({estado: "ok", movies: allMovies.rows})
+        res.json({ estado: "ok", movies: allMovies.rows })
     } catch (error) {
-        res.json({estado: "error", error: error.message })
+        res.json({ estado: "error", error: error.message })
     }
 };
 
@@ -66,15 +66,14 @@ const updateMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
     const { id } = req.params
-    const { poster_id } = req.body
-    console.log(req.body)
     try {
+        const imgId = await pool.query('SELECT poster_id FROM movies WHERE id = $1', [id])
+        await deleteImage(imgId.rows[0].poster_id)
         const result = await pool.query('DELETE FROM movies WHERE id = $1', [id])
         if (result.rowCount === 0)
             return res.status(404).json({
                 message: "Película no encontrada!!!"
             })
-        await deleteImage(poster_id)
         res.json({ estado: "ok", msg: "Película eliminada con éxito!!!" })
     } catch (error) {
         res.json({ estado: "error", error: error.message })
