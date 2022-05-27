@@ -38,7 +38,7 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
             toast.error("Error, no hay conexión con el servidor!!!")
         } else {
             if (res.movie) {
-                let newData = moviesDb.map((e) => (e._id === res.movie._id ? res.movie : e))
+                let newData = moviesDb.map((e) => (e.id === res.movie.id ? res.movie : e))
                 setMoviesDb(newData);
                 toast.success(res.msg)
                 navigate("/", { replace: true })
