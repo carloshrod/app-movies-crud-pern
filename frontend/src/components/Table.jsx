@@ -33,7 +33,7 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
     const filterMovies = movies.filter((movie) => {
         return (movie.clasificacion.toLowerCase().includes(filter.toLowerCase()) ||
             movie.idioma.toLowerCase().includes(filter.toLowerCase()) ||
-            movie.fechaestreno.toLowerCase().includes(filter.toLowerCase()))
+            movie.fecha_estreno.toLowerCase().includes(filter.toLowerCase()))
     })
 
     // Mostrar películas:

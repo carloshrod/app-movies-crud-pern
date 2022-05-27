@@ -15,7 +15,7 @@ const initialForm = {
     reparto: "",
 }
 
-const Form = ({ moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit }) => {
+const Form = ({ moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit, btnText }) => {
 
     const {
         form,
@@ -61,7 +61,7 @@ const Form = ({ moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit 
             </div>
             <div className="col-5 col-sm-3 col-md-2 col-lg-3 m-auto mt-4">
                 <button className="btn btn-success w-100" type="submit">
-                    Crear
+                    {btnText}
                 </button>
             </div>
         </form>
