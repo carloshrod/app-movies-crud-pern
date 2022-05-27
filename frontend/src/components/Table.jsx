@@ -74,7 +74,7 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
                         <option value="40">40</option>
                         <option value={movies.length}>Todos</option>
                     </select>
-                    <label className="table-labels"> Usuarios por página</label>
+                    <label className="table-labels"> Películas por página</label>
                 </div>
 
                 <div className="col-4 col-sm-6 col-md-4 dataTable-search">
@@ -84,7 +84,7 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
                         placeholder="Filtrar..." type="text" value={filter}
                         onChange={handleFilter}
                     />
-                    <label className="table-labels">{range()} {range() === 1 ? "Usuario" : "Usuarios"}</label>
+                    <label className="table-labels">{range()} {range() === 1 ? "Pelicula" : "Películas"}</label>
                 </div>
             </div>
 
