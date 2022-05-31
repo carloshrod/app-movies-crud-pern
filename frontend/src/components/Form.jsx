@@ -26,7 +26,7 @@ const Form = ({ moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit,
     } = useForm(initialForm, moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit);
 
     return (
-        <form className="row g-3 needs-validation d-flex justify-content-center align-items-center" encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
+        <form className="row g-3" encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
             <div className="col-md-6 text-center">
                 <div className="pt-3">
                     <img src={pathImage} alt="poster" className="img-fluid poster mb-2" />
@@ -65,7 +65,7 @@ const Form = ({ moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit,
                         value={form.reparto} onChange={handleChange} />
                 </div>
             </div>
-            <div className="d-flex align-items-center col-5 col-sm-3 col-md-3 col-lg-3 m-auto mt-3 mb-1">
+            <div className="button-container col-5 col-sm-3 col-md-3 col-lg-3">
                 <button className="btn btn-success w-100" type="submit">
                     {btnText}
                 </button>

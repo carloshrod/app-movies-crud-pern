@@ -89,58 +89,55 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
     }
 
     return (
-        <div className="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+        <div className="container">
             <div className="dataTable-top mb-2">
-                <div className="col-4 col-sm-6 col-md-4 dataTable-dropdown">
-                    <select name="select" ref={selectRef} className="dataTable-selector text-center" value={moviesPerPage.select} onChange={handleInputChange}>
+                <div className="col-4 col-sm-6 col-md-4">
+                    <select name="select" ref={selectRef} className="dataTable-selector" value={moviesPerPage.select} onChange={handleInputChange}>
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
                         <option value="40">40</option>
-                        <option value={movies.length}>Todos</option>
+                        <option value={movies.length}>All</option>
                     </select>
-                    <label className="table-labels"> Películas por página</label>
+                    <label className="table-labels-top"> Películas por página</label>
                 </div>
-                <div className="input-table col-4 col-sm-6 col-md-4 dataTable-search">
+                <div className="col-4 col-sm-6 col-md-4">
                     <input
-                        data-tip
                         className="col-12 col-sm-7 col-md-7 col-lg-8 dataTable-input"
                         placeholder="Filtrar..." type="text" value={filter}
                         onChange={handleFilter}
                     />
-                    <label className="table-labels">{range()} {range() === 1 ? "Pelicula" : "Películas"}</label>
+                    <label className="table-labels-top">{range()} {range() === 1 ? "Pelicula" : "Películas"}</label>
                 </div>
             </div>
-            <div className="dataTable-container">
-                <table className="table datatable table-hover text-center">
-                    <thead>
-                        <tr>
-                            {tableHeaders.map((header) => (
-                                <th key={header.id} className={header.className}>{header.label}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {movies.length > 0 ?
-                            <>
-                                {displayMovies}
-                            </>
-                            : (
-                                <tr>
-                                    <td colSpan={6}>
-                                        <h2 className="text-center m-5">
-                                            {loader}{!loader && "¡No hay información!"}
-                                        </h2>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <table className="table table-hover text-center">
+                <thead>
+                    <tr>
+                        {tableHeaders.map((header) => (
+                            <th key={header.id} className={header.className}>{header.label}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {movies.length > 0 ?
+                        <>
+                            {displayMovies}
+                        </>
+                        : (
+                            <tr>
+                                <td colSpan={6}>
+                                    <h2 className="text-center m-5">
+                                        {loader}{!loader && "¡No hay información!"}
+                                    </h2>
+                                </td>
+                            </tr>
+                        )
+                    }
+                </tbody>
+            </table>
             <div className="dataTable-bottom">
-                <div className="dataTable-info d-none d-sm-block mt-4">
-                    <span style={{ fontSize: "12px" }}>Mostrando {firstItemShowedPerPage + 1} a {pageNumber + 1 === pageCount() ?
+                <div className="d-none d-sm-block mt-4">
+                    <span className="table-labels-bottom">Mostrando {firstItemShowedPerPage + 1} a {pageNumber + 1 === pageCount() ?
                         range()
                         :
                         lastItemShowedPerPage} de {range()}

@@ -6,7 +6,7 @@ const Navbar = () => {
             <div className="logo">
                 ROYAL FILMS
             </div>
-            <Link to="/" className="nav-links d-inline-flex align-items-center justify-content-between">
+            <Link to="/" className="nav-links">
                 <span className="home-icon">
                     <i className="fa-solid fa-film" />
                 </span>
