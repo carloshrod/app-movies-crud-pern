@@ -4,7 +4,7 @@ const { uploadImage, deleteImage } = require('../utils/cloudinary');
 
 const getAllMovies = async (req, res) => {
     try {
-        const allMovies = await pool.query('SELECT * FROM movies');
+        const allMovies = await pool.query('SELECT * FROM movies ORDER BY id');
         res.json({ estado: "ok", movies: allMovies.rows })
     } catch (error) {
         res.json({ estado: "error", error: error.message })
