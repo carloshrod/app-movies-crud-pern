@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import defaultImg from '../media/default-img.png';
 import { validateForm, validateFormEdit } from '../utils/validateForm';
+import { formDataCreateMovie, formDataUpdateMovie } from "../utils/formData";
 
 export const useForm = (initialForm, moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit) => {
     const [form, setForm] = useState(initialForm);
@@ -46,38 +47,18 @@ export const useForm = (initialForm, moviesDb, createMovie, updateMovie, movieTo
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (form.id === null) {
             if (validateForm(form, file) === true) {
                 const formData = new FormData();
-                formData.append("nombre", form.nombre)
-                formData.append("idioma", form.idioma)
-                formData.append("clasificacion", form.clasificacion)
-                formData.append("duracion", form.duracion)
-                formData.append("fecha_estreno", form.fecha_estreno)
-                formData.append("trailer", form.trailer)
-                formData.append("director", form.director)
-                formData.append("sinopsis", form.sinopsis)
-                formData.append("reparto", form.reparto)
-                formData.append("imagen", file) // Archivo de imágen
+                formDataCreateMovie(formData, form, file);
                 createMovie(formData);
+                setPathImage(defaultImg);
                 handleReset();
             }
         } else {
             if (validateFormEdit(form) === true) {
                 const formData = new FormData();
-                formData.append("nombre", form.nombre)
-                formData.append("idioma", form.idioma)
-                formData.append("clasificacion", form.clasificacion)
-                formData.append("duracion", form.duracion)
-                formData.append("fecha_estreno", form.fecha_estreno)
-                formData.append("trailer", form.trailer)
-                formData.append("director", form.director)
-                formData.append("sinopsis", form.sinopsis)
-                formData.append("reparto", form.reparto)
-                formData.append("imgUrl", movieToEdit.poster_url)
-                formData.append("imgId", movieToEdit.poster_id)
-                formData.append("imagen", file) // Archivo de imágen
+                formDataUpdateMovie(formData, form, movieToEdit, file);
                 updateMovie(formData);
             }
         }
