@@ -20,6 +20,10 @@ textarea {
   resize: none;
 }
 
+.card {
+  border-radius: 10px;
+}
+
 .card-title {
   color: rgb(11, 11, 122);
   font-weight: bold;
@@ -32,9 +36,10 @@ label {
 }
 
 .poster {
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 250px;
+  min-width: 250px;
   border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.103);
 }
 
 .table-labels {
@@ -68,38 +73,10 @@ input[type="file"] {
   padding: 0 20px;
 }
 
-.navbar .links-container .links {
-  display: inline-flex;
-  align-items: center;
-}
-
 .navbar .logo {
   color: white;
   font-size: 30px;
   margin-right: 1.5rem;
-}
-
-.navbar .toggle-btn {
-  font-size: 20px;
-  margin: 10px;
-  cursor: pointer;
-  color: #012970;
-}
-
-/* .navbar .links a {
-  color: white;
-  font-weight: bold;
-  padding: 1rem
-} */
-
-.navbar a:hover {
-  color: #08366a;
-  transform: scale(1.02);
-}
-
-.navbar .active {
-  background-color: #148f39;
-  border-radius: 10px;
 }
 
 .navbar .home-icon {
@@ -117,12 +94,35 @@ input[type="file"] {
   padding: 12px;
 }
 
-.navbar .btn-show-links {
-  display: none;
-}
-
 .nav-links {
   text-decoration: none;
+}
+
+.navbar a:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 500px) {
+  .navbar .logo {
+    font-size: 20px;
+  }
+  .navbar .home-icon {
+    font-size: 25px;
+  }
+  .navbar .btn-link {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 8px;
+  }  
+  .navbar a:hover {
+    transform: scale(1.05);
+  }
+  
+
 }
 
 /* ****************************** Loader ****************************** */

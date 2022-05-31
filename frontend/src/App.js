@@ -9,7 +9,7 @@ import Table from './components/Table';
 import { helpHttp } from './helpers/helpHttp';
 import { useCrudUsers } from './services/useCrud';
 
-function App({ screen, title }) {
+function App({ screen }) {
   const [moviesDb, setMoviesDb] = useState([])
   const [movieToEdit, setMovieToEdit] = useState(null);
   const [loading, setLoading] = useState(false);

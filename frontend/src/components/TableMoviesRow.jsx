@@ -8,8 +8,8 @@ const TableMoviesRow = ({ movie, nro_registro, setMovieToEdit, deleteMovie }) =>
         <tr>
             <th className="align-middle">{nro_registro}</th>
             <td className="align-middle">{nombre}</td>
-            <td className="align-middle">{clasificacion}</td>
-            <td className="align-middle d-none d-sm-table-cell">{fecha_estreno}</td>
+            <td className="align-middle d-none d-sm-table-cell">{clasificacion}</td>
+            <td className="align-middle">{fecha_estreno}</td>
             <td className="align-middle">
                 <Link
                     to={`edit/${id}`}
@@ -17,7 +17,7 @@ const TableMoviesRow = ({ movie, nro_registro, setMovieToEdit, deleteMovie }) =>
                     <button
                         data-tip data-for="toolTipEdit"
                         type="button"
-                        className="btn btn-success me-1"
+                        className="btn btn-success m-1"
                         onClick={() => { setMovieToEdit(movie) }}
                     >
                         <i className="fa-solid fa-pen"/>

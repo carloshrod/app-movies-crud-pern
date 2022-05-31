@@ -26,40 +26,46 @@ const Form = ({ moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit,
     } = useForm(initialForm, moviesDb, createMovie, updateMovie, movieToEdit, setMovieToEdit);
 
     return (
-        <form className="row g-3 needs-validation" encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
-            <div className="col-12 text-center mb-3">
-                <div>
+        <form className="row g-3 needs-validation d-flex justify-content-center align-items-center" encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
+            <div className="col-md-6 text-center">
+                <div className="pt-3">
                     <img src={pathImage} alt="poster" className="img-fluid poster mb-2" />
                 </div>
-                <label className="btn btn-success m-1">
-                    <input type="file" name="imagen" onChange={onChangeFile} />
-                    <i className="fa-solid fa-arrow-up-from-bracket" />
-                </label>
+                <div className="pb-3">
+                    <label className="btn btn-success m-1">
+                        <input type="file" name="imagen" onChange={onChangeFile} />
+                        <i className="fa-solid fa-arrow-up-from-bracket" />
+                    </label>
+                </div>
             </div>
-            {inputMovies.map((input) => (
-                <InputForm
-                    key={input.id}
-                    type={input.type}
-                    {...input}
-                    value={form[input.name]}
-                    onChange={handleChange}
-                />
-            ))}
-            <div className="col-10 col-md-5 col-lg-5 m-auto mt-2 mb-2">
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">
-                    Sinopsis
-                </label>
-                <textarea name="sinopsis" className="form-control" id="exampleFormControlTextarea1" rows="5"
-                    value={form.sinopsis} onChange={handleChange} />
+            <div className="row col-md-6">
+                {inputMovies.map((input) => (
+                    <InputForm
+                        key={input.id}
+                        type={input.type}
+                        {...input}
+                        value={form[input.name]}
+                        onChange={handleChange}
+                    />
+                ))}
             </div>
-            <div className="col-10 col-md-5 col-lg-5 m-auto mt-2 mb-2">
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">
-                    Reparto
-                </label>
-                <textarea name="reparto" className="form-control" id="exampleFormControlTextarea1" rows="5"
-                    value={form.reparto} onChange={handleChange} />
+            <div className="row">
+                <div className="col-11 col-md-5 m-auto p-2">
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label">
+                        Sinopsis
+                    </label>
+                    <textarea name="sinopsis" className="form-control" id="exampleFormControlTextarea1" rows="5"
+                        value={form.sinopsis} onChange={handleChange} />
+                </div>
+                <div className="col-11 col-md-5 m-auto p-2">
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label">
+                        Reparto
+                    </label>
+                    <textarea name="reparto" className="form-control" id="exampleFormControlTextarea1" rows="5"
+                        value={form.reparto} onChange={handleChange} />
+                </div>
             </div>
-            <div className="col-5 col-sm-3 col-md-2 col-lg-3 m-auto mt-4">
+            <div className="d-flex align-items-center col-5 col-sm-3 col-md-3 col-lg-3 m-auto mt-3 mb-1">
                 <button className="btn btn-success w-100" type="submit">
                     {btnText}
                 </button>

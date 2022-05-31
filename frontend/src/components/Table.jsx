@@ -15,7 +15,32 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
     const firstItemShowedPerPage = pageNumber * moviesPerPage.select;
     const lastItemShowedPerPage = firstItemShowedPerPage + moviesPerPage.select;
 
-    const tableHeaders = ["#", "Nombre", "Clasificación", "Fecha de Estreno", ""]
+    const tableHeaders = [
+        {
+            id: 1,
+            label: "#",
+            className: "align-middle"
+        },
+        {
+            id: 2,
+            label: "Nombre",
+            className: "align-middle"
+        },
+        {
+            id: 3,
+            label: "Clasificación",
+            className: "align-middle d-none d-sm-table-cell"
+        },
+        {
+            id: 4,
+            label: "Fecha de Estreno",
+            className: "align-middle"
+        },
+        {
+            id: 5,
+            label: ""
+        },
+    ]
 
     const handleInputChange = (event) => {
         setMoviesPerPage({
@@ -76,8 +101,7 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
                     </select>
                     <label className="table-labels"> Películas por página</label>
                 </div>
-
-                <div className="col-4 col-sm-6 col-md-4 dataTable-search">
+                <div className="input-table col-4 col-sm-6 col-md-4 dataTable-search">
                     <input
                         data-tip
                         className="col-12 col-sm-7 col-md-7 col-lg-8 dataTable-input"
@@ -87,13 +111,12 @@ const Table = ({ movies, loader, setMovieToEdit, deleteMovie }) => {
                     <label className="table-labels">{range()} {range() === 1 ? "Pelicula" : "Películas"}</label>
                 </div>
             </div>
-
             <div className="dataTable-container">
                 <table className="table datatable table-hover text-center">
                     <thead>
                         <tr>
                             {tableHeaders.map((header) => (
-                                <th key={header}>{header}</th>
+                                <th key={header.id} className={header.className}>{header.label}</th>
                             ))}
                         </tr>
                     </thead>
