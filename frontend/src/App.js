@@ -23,10 +23,14 @@ function App({ screen }) {
           if (res.movies) {
             setMoviesDb(res.movies);
           } else {
-            toast.error("Error, no hay conexión con la Base de Datos!!!", { toastId: "serverError" });
+            toast.error(
+              "Error, no hay conexión con la Base de Datos!!!",
+              { theme: "colored", autoClose: false, toastId: "serverError" });
           }
         } else {
-          toast.error("Error, no hay conexión con el servidor!!!", { toastId: "serverError" });
+          toast.error(
+            "Error, no hay conexión con el servidor!!!",
+            { theme: "colored", autoClose: false, toastId: "serverError" });
         }
         setLoading(false);
       });

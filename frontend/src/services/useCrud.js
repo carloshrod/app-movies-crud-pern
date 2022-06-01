@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { helpHttp } from '../helpers/helpHttp';
 import Swal from 'sweetalert2';
-import { toast } from 'react-toastify';
 import { errorMsg } from '../utils/errorMsgCustom';
+import { toastLoading, toastUpdate } from '../utils/toastCustom';
 
 export const useCrudUsers = (moviesDb, setMoviesDb) => {
     let api = helpHttp();
@@ -14,16 +14,17 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
         let options = {
             body: formData,
         }
+        const loading = toastLoading()
         const res = await api.post(endpoint, options);
         console.log(res)
         if (!res.estado) {
-            toast.error("Error, no hay conexión con el servidor!!!")
+            toastUpdate(loading, "Error, no hay conexión con el servidor!!!", "error", "colored", false)
         } else {
             if (res.movie) {
                 setMoviesDb([...moviesDb, res.movie])
-                toast.success(res.msg)
+                toastUpdate(loading, res.msg, "success")
             } else {
-                toast.error(errorMsg(res.msg))
+                toastUpdate(loading, errorMsg(res.msg), "error")
             }
         }
     };
@@ -33,18 +34,19 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
         let options = {
             body: formData,
         }
+        const loading = toastLoading()
         const res = await api.put(endpoint, options);
         console.log(res)
         if (!res.estado) {
-            toast.error("Error, no hay conexión con el servidor!!!")
+            toastUpdate(loading, "Error, no hay conexión con el servidor!!!", "error", "colored", false)
         } else {
             if (res.movie) {
                 let newData = moviesDb.map((e) => (e.id === res.movie.id ? res.movie : e))
                 setMoviesDb(newData);
-                toast.success(res.msg)
+                toastUpdate(loading, res.msg, "success")
                 navigate("/", { replace: true })
             } else {
-                toast.error(errorMsg(res.msg))
+                toastUpdate(loading, errorMsg(res.msg), "error")
             }
         }
     };
@@ -61,16 +63,17 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
         }).then((res) => {
             if (res.isConfirmed) {
                 let endpoint = "http://localhost:8080/movies/" + id;
+                const loading = toastLoading()
                 api.del(endpoint).then((res) => {
                     if (!res.estado) {
-                        toast.error("Error, no hay conexión con el servidor!!!")
+                        toastUpdate(loading, "Error, no hay conexión con el servidor!!!", "error", "colored", false)
                     } else {
                         if (res.estado === "ok") {
                             let newData = moviesDb.filter((el) => el.id !== id);
                             setMoviesDb(newData);
-                            toast.success(res.msg)
+                            toastUpdate(loading, res.msg, "success")
                         } else {
-                            toast.error(errorMsg(res.msg))
+                            toastUpdate(loading, errorMsg(res.msg), "error")
                         }
                     }
                 })
