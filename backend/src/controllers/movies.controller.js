@@ -68,12 +68,10 @@ const deleteMovie = async (req, res, next) => {
     const { id } = req.params
     try {
         const imgId = await pool.query('SELECT poster_id FROM movies WHERE id = $1', [id])
-        await deleteImage(imgId.rows[0].poster_id)
         const result = await pool.query('DELETE FROM movies WHERE id = $1', [id])
         if (result.rowCount === 0)
-            return res.status(404).json({
-                message: "Película no encontrada!!!"
-            })
+            return res.status(404).json({ estado: "error", msg: "Película no encontrada!!!" })
+        await deleteImage(imgId.rows[0].poster_id)
         res.json({ estado: "ok", msg: "Película eliminada con éxito!!!" })
     } catch (error) {
         next(error);
