@@ -40,23 +40,18 @@ export const useForm = (initialForm, moviesDb, createMovie, updateMovie, movieTo
         })
     };
 
-    const handleReset = (e) => {
-        setForm(initialForm);
-        setMovieToEdit(null);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (form.id === null) {
-            if (validateForm(form, file) === true) {
+            if (validateForm(form, file, moviesDb) === true) {
                 const formData = new FormData();
                 formDataCreateMovie(formData, form, file);
                 createMovie(formData);
                 setPathImage(defaultImg);
-                handleReset();
+                setForm(initialForm);
             }
         } else {
-            if (validateFormEdit(form) === true) {
+            if (validateFormEdit(form, moviesDb) === true) {
                 const formData = new FormData();
                 formDataUpdateMovie(formData, form, movieToEdit, file);
                 updateMovie(formData);

@@ -55,18 +55,20 @@ function App({ screen }) {
           />
         }
         {screen === "Crear Película" &&
-          <Form 
-          createMovie={createMovie} 
-          setMovieToEdit={setMovieToEdit} 
-          btnText="Crear"
+          <Form
+            moviesDb={moviesDb}
+            createMovie={createMovie}
+            setMovieToEdit={setMovieToEdit}
+            btnText="Crear"
           />
         }
         {screen === "Editar Película" &&
-          <Form 
-          updateMovie={updateMovie} 
-          movieToEdit={movieToEdit} 
-          setMovieToEdit={setMovieToEdit} 
-          btnText="Editar"
+          <Form
+            moviesDb={moviesDb}
+            updateMovie={updateMovie}
+            movieToEdit={movieToEdit}
+            setMovieToEdit={setMovieToEdit}
+            btnText="Editar"
           />
         }
       </Container>
