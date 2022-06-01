@@ -2,16 +2,16 @@ const pool = require('../db');
 const fs = require('fs-extra');
 const { uploadImage, deleteImage } = require('../utils/cloudinary');
 
-const getAllMovies = async (req, res) => {
+const getAllMovies = async (req, res, next) => {
     try {
         const allMovies = await pool.query('SELECT * FROM movies ORDER BY id');
         res.json({ estado: "ok", movies: allMovies.rows })
     } catch (error) {
-        res.json({ estado: "error", error: error.message })
+        next(error);
     }
 };
 
-const createMovie = async (req, res) => {
+const createMovie = async (req, res, next) => {
     const { nombre, idioma, clasificacion, duracion, fecha_estreno,
         trailer, sinopsis, director, reparto } = req.body
     try {
@@ -29,11 +29,11 @@ const createMovie = async (req, res) => {
             ]);
         res.json({ estado: "ok", msg: "Película creada con éxito!!!", movie: result.rows[0] })
     } catch (error) {
-        res.json({ estado: "error", msg: error.message })
+        next(error);
     }
 };
 
-const updateMovie = async (req, res) => {
+const updateMovie = async (req, res, next) => {
     const { id } = req.params
     const { nombre, idioma, clasificacion, duracion, fecha_estreno,
         trailer, sinopsis, director, reparto, imgUrl, imgId } = req.body
@@ -60,11 +60,11 @@ const updateMovie = async (req, res) => {
             })
         res.json({ estado: "ok", msg: "Película editada con éxito!!!", movie: result.rows[0] })
     } catch (error) {
-        res.json({ estado: "error", msg: error.message })
+        next(error);
     }
 }
 
-const deleteMovie = async (req, res) => {
+const deleteMovie = async (req, res, next) => {
     const { id } = req.params
     try {
         const imgId = await pool.query('SELECT poster_id FROM movies WHERE id = $1', [id])
@@ -76,7 +76,7 @@ const deleteMovie = async (req, res) => {
             })
         res.json({ estado: "ok", msg: "Película eliminada con éxito!!!" })
     } catch (error) {
-        res.json({ estado: "error", error: error.message })
+        next(error);
     }
 }
 

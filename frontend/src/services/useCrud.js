@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { helpHttp } from '../helpers/helpHttp';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { errorMsg } from '../utils/errorMsgCustom';
 
 export const useCrudUsers = (moviesDb, setMoviesDb) => {
     let api = helpHttp();
@@ -22,7 +23,7 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
                 setMoviesDb([...moviesDb, res.movie])
                 toast.success(res.msg)
             } else {
-                toast.error(res.msg)
+                toast.error(errorMsg(res.msg))
             }
         }
     };
@@ -43,7 +44,7 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
                 toast.success(res.msg)
                 navigate("/", { replace: true })
             } else {
-                toast.error(res.msg)
+                toast.error(errorMsg(res.msg))
             }
         }
     };
@@ -69,7 +70,7 @@ export const useCrudUsers = (moviesDb, setMoviesDb) => {
                             setMoviesDb(newData);
                             toast.success(res.msg)
                         } else {
-                            toast.error(res.msg)
+                            toast.error(errorMsg(res.msg))
                         }
                     }
                 })

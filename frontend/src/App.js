@@ -23,7 +23,7 @@ function App({ screen }) {
           if (res.movies) {
             setMoviesDb(res.movies);
           } else {
-            toast.error("Error, no hay conexión con el servidor!!!", { toastId: "serverError" });
+            toast.error("Error, no hay conexión con la Base de Datos!!!", { toastId: "serverError" });
           }
         } else {
           toast.error("Error, no hay conexión con el servidor!!!", { toastId: "serverError" });

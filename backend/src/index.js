@@ -16,6 +16,11 @@ app.use(express.urlencoded({ extended: false }));
 // Router:
 app.use(router)
 
+// Error middleware:
+app.use((error, req, res, next) => {
+    return res.json({ estado: "error", msg: error.message })
+})
+
 // Iniciar servidor:
 app.listen(PORT, function () {
     console.log(`Server listening on port ${PORT}!!!`);
