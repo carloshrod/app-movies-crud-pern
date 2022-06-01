@@ -31,7 +31,7 @@ export const validateForm = (form, file, moviesDb) => {
     return true;
 }
 
-export const validateFormEdit = (form, moviesDb) => {
+export const validateFormEdit = (form, moviesDb, movieToEdit) => {
     if (!form.nombre || !form.idioma || !form.clasificacion ||
         !form.duracion || !form.fecha_estreno || !form.trailer ||
         !form.director || !form.sinopsis || !form.reparto) {
@@ -44,17 +44,23 @@ export const validateFormEdit = (form, moviesDb) => {
         return false
     }
 
-    const existingNombre = moviesDb.filter((movie) => movie.nombre === form.nombre)
-    const existingTrailer = moviesDb.filter((movie) => movie.trailer === form.trailer)
+    if ((movieToEdit.nombre !== form.nombre) || (movieToEdit.trailer !== form.trailer)) {
+        const existingNombre = moviesDb.filter((movie) => movie.nombre === form.nombre)
+        const existingTrailer = moviesDb.filter((movie) => movie.trailer === form.trailer)
 
-    if (existingNombre.length > 0) {
-        toastValidate("Ya existe una película con ese nombre!!!")
-        return false
-    }
+        if (existingNombre.length > 0) {
+            if (existingNombre[0].nombre !== movieToEdit.nombre) {
+                toastValidate("Ya existe una película con ese nombre!!!")
+                return false
+            }
+        }
 
-    if (existingTrailer.length > 0) {
-        toastValidate("Ya existe una película con ese trailer!!!")
-        return false
+        if (existingTrailer.length > 0) {
+            if (existingTrailer[0].trailer !== movieToEdit.trailer) {
+                toastValidate("Ya existe una película con ese trailer!!!")
+                return false
+            }
+        }
     }
 
     return true;

@@ -51,7 +51,7 @@ export const useForm = (initialForm, moviesDb, createMovie, updateMovie, movieTo
                 setForm(initialForm);
             }
         } else {
-            if (validateFormEdit(form, moviesDb) === true) {
+            if (validateFormEdit(form, moviesDb, movieToEdit) === true) {
                 const formData = new FormData();
                 formDataUpdateMovie(formData, form, movieToEdit, file);
                 updateMovie(formData);
